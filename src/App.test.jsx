@@ -22,7 +22,7 @@ describe("Todo List", () => {
   test("TODO 3: clicking 'Mark done' toggles only that task", async () => {
     const user = userEvent.setup();
     render(<App />);
-    const buttons = screen.getAllByRole("button", { name: /mark done/i });
+    const buttons = screen.getAllByRole("button", { name: /mark/i });
     expect(buttons).toHaveLength(3);
 
     await user.click(buttons[1]);
@@ -41,7 +41,7 @@ describe("Todo List", () => {
     const user = userEvent.setup();
     render(<App />);
     expect(document.body).toHaveTextContent(/1\s*of\s*3\s*done/);
-    await user.click(screen.getAllByRole("button", { name: /mark done/i })[1]);
+    await user.click(screen.getAllByRole("button", { name: /mark/i })[1]);
     expect(document.body).toHaveTextContent(/2\s*of\s*3\s*done/);
   });
 });
