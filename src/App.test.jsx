@@ -36,7 +36,7 @@ describe("Todo List", () => {
     expect(items[1]).toHaveTextContent("⬜");
   });
 
-  test.skip("TODO 4 (stretch): heading shows the done count", async () => {
+  test("TODO 4 (stretch): heading shows the done count", async () => {
     // Remove `.skip` from this test if you attempt the stretch task.
     const user = userEvent.setup();
     render(<App />);
