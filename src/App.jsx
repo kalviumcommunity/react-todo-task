@@ -9,22 +9,32 @@ const initialTasks = [
 function App() {
   const [tasks, setTasks] = useState(initialTasks);
 
-  // TODO 3: write a function that toggles `done` for the task with the given id.
-  // Do not change the array directly. Create a new array and call setTasks.
+  const toggleTaskDone = (id) => {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) =>
+        task.id === id ? { ...task, done: !task.done } : task
+      )
+    );
+  };
+
+  const doneCount = tasks.filter((task) => task.done).length;
 
   return (
     <div>
-      {/* TODO 4 (stretch): show "X of Y done" here, e.g. "1 of 3 done" */}
+      <p>
+        {doneCount} of {tasks.length} done
+      </p>
       <h1>My Tasks</h1>
 
       <ul>
-        {/* TODO 1: render every task as an <li> using tasks.map().
-            Show task.text. Don't forget the key. */}
-
-        {/* TODO 2: before the text, show "✅" if task.done is true, otherwise "⬜". */}
-
-        {/* TODO 3: add a button with the text "Mark done" inside each <li>.
-            Clicking it should toggle that task's `done` value. */}
+        {tasks.map((task) => (
+          <li key={task.id}>
+            {task.done ? "✅" : "⬜"} {task.text}
+            <button type="button" onClick={() => toggleTaskDone(task.id)}>
+              Mark done
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   );
